@@ -1,0 +1,26 @@
+{
+  "name": "trivago",
+  "version": "1.0.0",
+  "description": "Platform To Search For Free Room in Hotels And Booking Room",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedsolimanpts/trivago.git"
+  },
+  "author": "Ahmed Solliman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmedsolimanpts/trivago/issues"
+  },
+  "homepage": "https://github.com/ahmedsolimanpts/trivago#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.3",
+    "nodemon": "^2.0.12"
+  }
+}
