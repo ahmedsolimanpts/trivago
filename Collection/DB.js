@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require("bcryptjs")
 //Start Hotel Schema
 const HotelSchema = Schema({
     name: {
@@ -9,10 +10,12 @@ const HotelSchema = Schema({
     phone: {
         type: String,
         required: true,
+        unique: true
     },
     email: {
         type: String,
         required: true,
+        unique: true
     },
     admins: {
         type: Schema.ObjectId, //Super Admin Can Add admin with him or Not
@@ -31,14 +34,17 @@ const UserSchema = Schema({
     name: {
         type: String,
         required: true,
+        trim: true
     },
     phone: {
         type: String,
         required: true,
+        unique: true,
     },
     email: {
         type: String,
         required: true,
+        unique: true
     },
     role: {
         type: String,
@@ -55,7 +61,22 @@ const UserSchema = Schema({
     }
 
 });
+UserSchema.index({ email: 1 }, { unique: true })
+
+UserSchema.pre("save", async function (next) {
+    try {
+        const salt = await bcrypt.genSaltSync(10);
+        const hash = await bcrypt.hash(this.password, salt)
+        this.password = hash;
+        next();
+    }
+    catch (err) {
+        console.log(err)
+    }
+
+})
 const user = mongoose.model("user", UserSchema);
+
 // End User Schema
 // Start Admin Schema
 const AdminSchema = Schema({
@@ -134,7 +155,7 @@ const OffersSchema = Schema({
         required: true
     },
     salary: {
-        type: String,
+        type: Number,
         required: true
     },
     decription: {
