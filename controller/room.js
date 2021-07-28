@@ -48,32 +48,48 @@ const Deleteroom = async (req, res) => {
         res.json({ message: "Please Enter All Fildes" })
     }
     const hotelid = await DB.hotel.findOne({ name: hotelname }, { _id: 1 }).exec();
-    const rooms = await DB.room.findOne({ $and: [{ roomid: roomid }, { floor: roomfloor }] }).populate('hotel', { hotel: hotelname }).exec()
-    console.log(hotelid)
-    console.log(rooms)
+    const rooms = await DB.room.findOne({ $and: [{ roomid: roomid }, { floor: roomfloor }] }).populate("hotel", null, { hotel: hotelname }).exec();
     try {
-        if (hotelid) {
-
-            /*  await DB.room.findOneAndDelete().then(doc => {
-                 if (doc) {
-                     res.json({ message: "Delete Done", doc })
-                 } else {
-                     res.json({ message: "Delete Not Compelete" })
-                 }
-             }).catch(e => {
-                 console.log(e)
-             }) */
+        if (hotelid && rooms) {
+            await DB.room.findOneAndDelete().then(doc => {
+                if (doc) {
+                    res.json({ message: "Delete Done", doc })
+                } else {
+                    res.json({ message: "Delete Not Compelete" })
+                }
+            }).catch(e => {
+                console.log(e)
+            })
         }
         else {
-            res.json({ message: "Please Enter Valid Hotel Name or room" })
+            res.json({ message: "Please Enter Valid Hotel Name or room No Room With this Details" })
         }
     }
     catch (e) {
         console.log(e)
     }
 }
+const Getroomforonehotel = async (req, res) => {
+    const { hotelname } = req.body;
+    try {
+        if (hotelname) {
+            await DB.room.find().populate("hotel", null, { hotelname: hotelname }).then(doc => {
+                if (doc) {
+                    res.json({ message: "Sucess GET Hotel Room", doc })
+                } else {
+                    res.json({ message: "No Room Add Yet" })
+                }
+            })
+        } else {
+            res.json({ message: "Please Enter Hotel Name" })
+        }
+    } catch (e) {
+
+    }
+}
 module.exports = {
     Addroom: Addroom,
     Getallroom: Getallroom,
-    Deleteroom: Deleteroom
+    Deleteroom: Deleteroom,
+    Getroomforonehotel: Getroomforonehotel
 }

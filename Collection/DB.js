@@ -213,7 +213,8 @@ const EmployeeSchema = Schema({
     },
     phone: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     hotel: {
         type: Schema.ObjectId,

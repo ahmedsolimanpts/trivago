@@ -3,6 +3,8 @@ const userController = require("../controller/user");
 const HotelController = require("../controller/hotel")
 const offercontroller = require("../controller/offer")
 const roomcontroller = require("../controller/room");
+const departmentcontroller = require("../controller/depart")
+const empcontroller = require("../controller/employee")
 // ----------------- User Router --------------- //
 router.get("/getalluser", userController.GetAlluser);
 router.post("/adduser", userController.AddUser);
@@ -24,6 +26,15 @@ router.post("/deleteoffer", offercontroller.DeleteOffer);
 router.get("/getrooms", roomcontroller.Getallroom);
 router.post("/addroom", roomcontroller.Addroom);
 router.post("/deleteroom", roomcontroller.Deleteroom);
+router.post("/getallroomhotel", roomcontroller.Getroomforonehotel);
 // ----------------- Room Router --------------- //
+// ----------------- Department Router --------------- //
+router.post("/adddepartment", departmentcontroller.addDepartment);
+router.post("/gethdepart", departmentcontroller.getdepartinhotel)
+// ----------------- Department Router --------------- //
+// ----------------- Employee Router --------------- //
+router.post("/addemp", empcontroller.addemployee);
+router.post("/hotelemp", empcontroller.getemployeesinhotel)
+// ----------------- Employee Router --------------- //
 
 module.exports = router;
