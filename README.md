@@ -4,15 +4,15 @@ Platform To Search For Free Room in Hotels And Booking Room
 
 # Routing
 
-# user Routing:
+# USER Routing:
 
 <ol>
 <li>Get All User</li>
 <p>METHOD --> GET</p> 
 <p>https://domina.com/api/getalluser</p>
-</ol>
 
-<ol>
+
+
 <li>Add User</li> 
 <p>METHOD --> GET</p> 
 
