@@ -32,7 +32,7 @@ Platform To Search For Free Room in Hotels And Booking Room
 https://domin.com/api/adduser?name=${value}&email=${value}&phone=${value}&password=${value}&password2=${value}</p>
 </ol>
 
-## HOTEL Routing
+# HOTEL Routing
 
 <ol>
 <li>Get All Hotel</li>
@@ -96,7 +96,7 @@ https://domin.com/api/adduser?name=${value}&email=${value}&phone=${value}&passwo
 <p>https://domin.com/api/deletehotel</p>
 </ol>
 
-## ROOM Routing
+# ROOM Routing
 <ol>
 <li>ADD New ROOM </li>
 <p>METHOD --> POST</p>
@@ -150,7 +150,7 @@ https://domin.com/api/adduser?name=${value}&email=${value}&phone=${value}&passwo
 <p>https://domin.com/api/deleteroom</p>
 </ol>
 
-## DEPARTMENT Routing
+# DEPARTMENT Routing
 <ol>
 <li>ADD New DEPARTMENT IN HOTEL </li>
 <p>METHOD --> POST</p> 
@@ -179,7 +179,7 @@ https://domin.com/api/adduser?name=${value}&email=${value}&phone=${value}&passwo
 <p>https://domin.com/api/gethdepart</p>
 </ol>
 
-## Employee Routing
+# Employee Routing
 <ol>
 <li>ADD New Employee IN HOTEL </li>
 <p>METHOD --> POST</p>
@@ -211,7 +211,7 @@ https://domin.com/api/adduser?name=${value}&email=${value}&phone=${value}&passwo
 </ol>
 
 
-## CONTACT US Routing
+# CONTACT US Routing
 <ol>
 <li>ADD New CONTACT Message </li>
 <p>METHOD --> POST</p>
@@ -361,7 +361,7 @@ https://domin.com/api/adduser?name=${value}&email=${value}&phone=${value}&passwo
 </ol>
 
 
-## BOOKING Routing
+# BOOKING Routing
 
 <ol>
 <li>GET ALL BOOKING IN DB </li>
