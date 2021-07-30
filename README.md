@@ -11,7 +11,7 @@ Platform To Search For Free Room in Hotels And Booking Room
 <p>METHOD --> GET</p> 
 <h4>URL SHOUD LIKE:</h4>
 
-<p>https://domina.com/api/getalluser</p>
+<p>https://domin.com/api/getalluser</p>
 
 
 
@@ -29,21 +29,25 @@ Platform To Search For Free Room in Hotels And Booking Room
 <h4>URL SHOUD LIKE:</h4>
 
 <p>
-https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&password=${value}&password2=${value}</p>
+https://domin.com/api/adduser?name=${value}&email=${value}&phone=${value}&password=${value}&password2=${value}</p>
 </ol>
 
 ## HOTEL Routing
 
 <ol>
 <li>Get All Hotel</li>
-<p>METHOD --> GET</p> 
-<p>https://domina.com/api/getallhotels</p>
+<p>METHOD --> GET</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/getallhotels</p>
 </ol>
 
 <ol>
 <li>Get Hotel With ID</li>
 <p>METHOD --> GET</p> 
-<p>https://domina.com/api/getonehotelid</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/getonehotelid</p>
 </ol>
 
 <ol>
@@ -54,7 +58,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ul>
 <li>name</li>
 </ul>
-<p>https://domina.com/api/getonehotelname</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/getonehotelname</p>
 </ol>
 
 
@@ -71,7 +77,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <P>is an email of the user that will be the admin of hotel</p>
 <li>description</li>
 </ul>
-<p>https://domina.com/api/addhotel?name=${value}&phone={value}&email=${value}&description=${value}&admins=${value}</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/addhotel?name=${value}&phone={value}&email=${value}&description=${value}&admins=${value}</p>
 </ol>
 
 
@@ -83,7 +91,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ul>
 <li>id</li>
 </ul>
-<p>https://domina.com/api/deletehotel</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/deletehotel</p>
 </ol>
 
 ## ROOM Routing
@@ -99,13 +109,17 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <li>description</li> 
 <li>salary</li>
 </ul>
-<p>https://domina.com/api/addroom</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/addroom</p>
 </ol>
 
 <ol>
 <li>GET ALL ROOMs </li>
 <p>METHOD --> GET</p> 
-<p>https://domina.com/api/getrooms</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/getrooms</p>
 </ol>
 
 <ol>
@@ -116,7 +130,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ul>
 <li>hotelname</li>
 </ul>
-<p>https://domina.com/api/getallroomhotel</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/getallroomhotel</p>
 </ol>
 <ol>
 
@@ -129,7 +145,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <li>roomfloor</li>
 <li>hotelname</li>
 </ul>
-<p>https://domina.com/api/deleteroom</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/deleteroom</p>
 </ol>
 
 ## DEPARTMENT Routing
@@ -142,7 +160,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <li>name</li>
 <li>hotel</li>
 </ul>
-<p>https://domina.com/api/adddepartment</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/adddepartment</p>
 </ol>
 
 
@@ -154,7 +174,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ul>
 <li>hotel</li>
 </ul>
-<p>https://domina.com/api/gethdepart</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/gethdepart</p>
 </ol>
 
 ## Employee Routing
@@ -170,7 +192,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <li>salary</li>
 <li>Department</li> //DEPARTMENT NAME
 </ul>
-<p>https://domina.com/api/addemp</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/addemp</p>
 </ol>
 
 <ol>
@@ -181,7 +205,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ul>
 <li>hotel</li> // HOTEL NAME
 </ul>
-<p>https://domina.com/api/hotelemp</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/hotelemp</p>
 </ol>
 
 
@@ -196,7 +222,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <li>hotel</li> // HOTEL NAME IN HOTEL COLLECTION
 <li>user</li> //USER EMAIL IN USER COLLECTION
 </ul>
-<p>https://domina.com/api/addcontactus</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/addcontactus</p>
 </ol>
 
 <ol>
@@ -207,7 +235,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ul>
 <li>hotel</li> // HOTEL NAME IN HOTEL COLLECTION
 </ul>
-<p>https://domina.com/api/gethotelcontaactus</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/gethotelcontaactus</p>
 </ol>
 
 <ol>
@@ -218,7 +248,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ul>
 <li>user</li> // USER EMAIL IN USER COLLECTION
 </ul>
-<p>https://domina.com/api/deletecontactwemail</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/deletecontactwemail</p>
 </ol>
 
 # REQUEST Routing
@@ -239,7 +271,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <li>inoffer</li>
 <li>offerid</li>
 </ul>
-<p>https://domina.com/api/addrequest?user=${value}&hotel=${value}&from=${value}&to=${value}</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/addrequest?user=${value}&hotel=${value}&from=${value}&to=${value}</p>
 </ol>
 
 #### Another Way To Make Request
@@ -259,13 +293,17 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <li>inoffer</li>
 <li>offerid</li>
 </ul>
-<p>https://domina.com/api/addrequest</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/addrequest</p>
 </ol>
 
 <ol>
 <li>GET ALL REQUEST IN DB </li>
 <p>GET</p> 
-<p>https://domina.com/api/getrequest</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/getrequest</p>
 </ol>
 
 <ol>
@@ -277,7 +315,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ul>
 <li>hotel</li> // HOTEL NAME IN HOTEL COLLECTION
 </ul> 
-<p>https://domina.com/api/gethotelrequest?hotel=${value}</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/gethotelrequest?hotel=${value}</p>
 </ol>
 
 <ol>
@@ -288,7 +328,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ul>
 <li>id</li> // REQUEST ID IN REQUEST COLLECTION
 </ul> 
-<p>https://domina.com/api/gethotelrequest?id=${value}</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/gethotelrequest?id=${value}</p>
 </ol>
 
 <ol>
@@ -300,7 +342,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ul>
 <li>id</li> // REQUEST ID IN REQUEST COLLECTION
 </ul> 
-<p>https://domina.com/api/deleterequestid</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/deleterequestid</p>
 </ol>
 
 <ol>
@@ -313,7 +357,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 </ul> 
 <h4>URL SHOUD LIKE:</h4>
 
-<p>https://domina.com/api/deletehotelrequest</p>
+<p>https://domin.com/api/deletehotelrequest</p>
 </ol>
 
 
@@ -322,7 +366,9 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ol>
 <li>GET ALL BOOKING IN DB </li>
 <p>METHOD --> GET</p> 
-<p>https://domina.com/api/getallbooking</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/getallbooking</p>
 </ol>
 
 <ol>
@@ -333,5 +379,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ul>
 <li>hotel</li> // HOTEL NAME IN HOTEL COLLECTION
 </ul> 
-<p>https://domina.com/api/gethotelbooking?hotel=${value}</p>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/gethotelbooking?hotel=${value}</p>
 </ol>
