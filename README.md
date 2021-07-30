@@ -4,7 +4,7 @@ Platform To Search For Free Room in Hotels And Booking Room
 
 # Routing
 
-## user Routing:
+# user Routing:
 
 <ol>
 <li>Get All User</li>
@@ -16,7 +16,7 @@ Platform To Search For Free Room in Hotels And Booking Room
 <li>Add User</li> 
 <p>METHOD --> GET</p> 
 
-### Requierments Fields
+#### Requierments Fields
 <ul>
 <li>name</li>
 <li>phone</li>
