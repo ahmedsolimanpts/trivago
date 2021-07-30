@@ -43,7 +43,6 @@ const Getallroom = async (req, res) => {
 };
 const Deleteroom = async (req, res) => {
     const { roomid, hotelname, roomfloor } = req.body;
-    console.log(req.body)
     if (!roomid || !hotelname || !roomfloor) {
         res.json({ message: "Please Enter All Fildes" })
     }

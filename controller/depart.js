@@ -18,7 +18,7 @@ const addDepartment = async (req, res) => {
             res.json({ message: "Please Enter Correct Hotel name" })
         }
     } catch (e) {
-
+        console.log(e)
     }
 };
 const getdepartinhotel = async (req, res) => {

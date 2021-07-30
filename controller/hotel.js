@@ -2,14 +2,15 @@ const DB = require("../Collection/DB");
 const validator = require("validator");
 //------------- Function To Add Hotel Data ------------------//
 const AddHotel = async (req, res) => {
-    const { name, phone, email, description, admins } = req.body;
-    try {
-        if (validator.isEmail(email)) {
-            const adminid = await DB.user.findOne({ email: admins }).exec()
-            if (adminid) {
-                if (!name || !phone || !email || !description || !admins) {
-                    res.json({ message: "please Enter All Fields And try Again" })
-                } else {
+    const { name, phone, email, description, admins } = req.query;
+    if (!name || !phone || !email || !description || !admins) {
+        res.json({ message: "please Enter All Fields And try Again" })
+    }
+    else {
+        try {
+            if (validator.isEmail(email)) {
+                const adminid = await DB.user.findOne({ email: admins }).exec()
+                if (adminid) {
                     const newHotel = new DB.hotel({ name, phone, email, description, admins: adminid });
                     newHotel.save().then((docs) => {
                         res.json({ msg: "Create Sucess", docs })
@@ -21,17 +22,18 @@ const AddHotel = async (req, res) => {
                             console.log(err)
                         }
                     })
+                } else {
+                    res.json({ message: "please Enter Valid Admin User There Is No User With This Email" })
                 }
             } else {
-                res.json({ message: "please Enter Valid Admin User There Is No User With This Email" })
+                res.json({ message: "please Enter Valid Email" })
             }
-        } else {
-            res.json({ message: "please Enter Valid Email" })
+        }
+        catch (err) {
+            console.log(err)
         }
     }
-    catch (err) {
-        console.log(err)
-    }
+
 }
 // Function To Get All Hotels Data
 const GetAllHotels = async (req, res) => {
@@ -49,7 +51,7 @@ const GetAllHotels = async (req, res) => {
     }
 };
 const GetHotelwithname = async (req, res) => {
-    const { name } = req.body;
+    const { name } = req.query;
     try {
         await DB.hotel.find({ name: name })
             .then(doc => {
@@ -64,7 +66,7 @@ const GetHotelwithname = async (req, res) => {
     }
 }
 const gethotelwithid = async (req, res) => {
-    const { id } = req.body;
+    const { id } = req.query;
     try {
         await DB.hotel.find({ _id: id })
             .then(doc => {

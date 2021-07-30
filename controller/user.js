@@ -17,7 +17,7 @@ const GetAlluser = async (req, res) => {
 };
 const AddUser = async (req, res) => {
     try {
-        const { name, phone, email, password, password2 } = req.body;
+        const { name, phone, email, password, password2 } = req.query;
         if (!name || !phone || !email || !password || !password2) {
             res.json({ message: "please Enter All Fields" })
         } else if ([password != password2] && password.length < 8) {
