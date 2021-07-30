@@ -8,13 +8,13 @@ Platform To Search For Free Room in Hotels And Booking Room
 
 <ol>
 <li>Get All User</li>
-<p>GET</p> 
+<p>METHOD --> GET</p> 
 <p>https://domina.com/api/getalluser</p>
 </ol>
 
 <ol>
 <li>Add User</li> 
-<p>Get</p> 
+<p>METHOD --> GET</p> 
 
 ### Requierments Fields
 <ul>
@@ -32,19 +32,19 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>Get All Hotel</li>
-<p>GET</p> 
+<p>METHOD --> GET</p> 
 <p>https://domina.com/api/getallhotels</p>
 </ol>
 
 <ol>
 <li>Get Hotel With ID</li>
-<p>GET</p> 
+<p>METHOD --> GET</p> 
 <p>https://domina.com/api/getonehotelid</p>
 </ol>
 
 <ol>
 <li>Get Hotel With Name</li>
-<p>GET</p> 
+<p>METHOD --> GET</p> 
 ### Requierments Fields
 <ul>
 <li>name</li>
@@ -55,7 +55,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>ADD  NEW Hotel </li>
-<p>GET</p> 
+<p>METHOD --> GET</p> 
 ### Requierments Fields
 <ul>
 <li>name</li>
@@ -71,7 +71,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>Delete Hotel </li>
-<p>POST</p> 
+<p>METHOD --> POST</p> 
 ### Requierments Fields
 <ul>
 <li>id</li>
@@ -82,7 +82,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 ## ROOM Routing
 <ol>
 <li>ADD New ROOM </li>
-<p>POST</p> 
+<p>METHOD --> POST</p> 
 ### Requierments Fields
 <ul>
 <li>roomid</li>
@@ -96,13 +96,13 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>GET ALL ROOMs </li>
-<p>GET</p> 
+<p>METHOD --> GET</p> 
 <p>https://domina.com/api/getrooms</p>
 </ol>
 
 <ol>
 <li>GET ALL ROOMs IN HOTEL</li>
-<p>POST </p> 
+<p>METHOD --> POST </p> 
 ### Requierments Fields
 <ul>
 <li>hotelname</li>
@@ -112,7 +112,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 <ol>
 
 <li>DELETE ROOM IN HOTEL</li>
-<p>POST </p> 
+<p>METHOD --> POST </p> 
 ### Requierments Fields
 <ul>
 <li>roomid</li>
@@ -125,7 +125,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 ## DEPARTMENT Routing
 <ol>
 <li>ADD New DEPARTMENT IN HOTEL </li>
-<p>POST</p> 
+<p>METHOD --> POST</p> 
 ### Requierments Fields
 <ul>
 <li>name</li>
@@ -137,7 +137,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>GET ALL DEPARTMENT IN ONE HOTEL</li>
-<p>POST</p> 
+<p>METHOD --> POST</p> 
 ### Requierments Fields
 <ul>
 <li>hotel</li>
@@ -148,7 +148,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 ## Employee Routing
 <ol>
 <li>ADD New Employee IN HOTEL </li>
-<p>POST</p> 
+<p>METHOD --> POST</p> 
 ### Requierments Fields
 <ul>
 <li>name</li> //USER NAME
@@ -162,7 +162,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>GET ALL Employee IN HOTEL </li>
-<p>POST</p> 
+<p>METHOD --> POST</p> 
 ### Requierments Fields
 <ul>
 <li>hotel</li> // HOTEL NAME
@@ -174,7 +174,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 ## CONTACT US Routing
 <ol>
 <li>ADD New CONTACT Message </li>
-<p>POST</p> 
+<p>METHOD --> POST</p> 
 ### Requierments Fields
 <ul>
 <li>message</li>
@@ -186,7 +186,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>GET CONTACT Message FOR ONE HOTEL</li>
-<p>POST</p> 
+<p>METHOD --> POST</p> 
 ### Requierments Fields
 <ul>
 <li>hotel</li> // HOTEL NAME IN HOTEL COLLECTION
@@ -196,7 +196,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>Delete CONTACT ONE Message FOR ONE USER EMAIL</li>
-<p>POST</p> 
+<p>METHOD --> POST</p> 
 ### Requierments Fields
 <ul>
 <li>user</li> // USER EMAIL IN USER COLLECTION
@@ -208,7 +208,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>ADD New REQUEST Message </li>
-<p>GET</p> 
+<p>METHOD --> GET</p> 
 ### Requierments Fields
 <ul>
 <li>from</li>
@@ -227,7 +227,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 #### Another Way To Make Request
 <ol>
 <li>ADD New REQUEST Message </li>
-<p>POST</p> 
+<p>METHOD --> POST</p> 
 
 ### Requierments Fields
 <ul>
@@ -252,7 +252,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>GET ALL HOTEL REQUESTS </li>
-<p>GET</p>
+<p>METHOD --> GET</p>
 
  ### Requierments Fields
 
@@ -264,7 +264,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>GET ONE REQUESTS </li>
-<p>GET</p>
+<p>METHOD --> GET</p>
 
 ### Requierments Fields
 <ul>
@@ -275,7 +275,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>DELETE REQUEST BY ID </li>
-<p>delete</p>
+<p>METHOD --> delete</p>
 
 ### Requierments Fields
 
@@ -287,7 +287,7 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>DELETE ALL REQUEST IN ONE HOTEL </li>
-<p>delete</p>
+<p>METHOD --> delete</p>
 
 ### Requierments Fields
 <ul>
@@ -301,13 +301,13 @@ https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&passw
 
 <ol>
 <li>GET ALL BOOKING IN DB </li>
-<p>GET</p> 
+<p>METHOD --> GET</p> 
 <p>https://domina.com/api/getallbooking</p>
 </ol>
 
 <ol>
 <li>GET ALL BOOKING IN HOTEL </li>
-<p>GET</p> 
+<p>METHOD --> GET</p> 
 
 ### Requierments Fields
 <ul>
