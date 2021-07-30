@@ -173,10 +173,11 @@ const RequestSchema = Schema({
     },
     user: {
         type: Schema.ObjectId,
-        ref: "user"
+        ref: "user",
+        required: true
     }, inoffer: {
         type: Boolean,
-        default: 0,
+        default: false,
         required: true
     },
     offer: {
@@ -185,18 +186,29 @@ const RequestSchema = Schema({
     },
     hotel: {
         type: Schema.ObjectId,
-        ref: "hotel"
+        ref: "hotel",
+        required: true
     },
     to: {
         type: Date,
         required: true
     },
-    salary: {
+    totalsalary: {
         type: String,
     },
     room: {
         type: Schema.ObjectId,
         ref: "room"
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'booking', 'cancle'],
+        default: 'pending'
+    },
+    invoice: {
+        type: Schema.ObjectId,
+        ref: "uinvoice"
+
     }
 })
 const Request = mongoose.model("Request", RequestSchema)
@@ -236,7 +248,8 @@ const Employee = mongoose.model("Employee", EmployeeSchema);
 const AttendenceSchema = Schema({
     user: {
         type: Schema.ObjectId,
-        ref: "user"
+        ref: "user",
+        required: true
     },
     acction: {
         type: String,
@@ -255,6 +268,58 @@ const AttendenceSchema = Schema({
 })
 const Attendence = mongoose.model("Attendence", AttendenceSchema);
 //End Attendence Schema
+// Start User Invoice   Schema
+const uinvoiceSchema = Schema({
+    user: {
+        type: Schema.ObjectId,
+        ref: "user"
+    },
+    payment: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    Date: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    requestid: {
+        type: Schema.ObjectId,
+        ref: "Request",
+        required: true
+    },
+    transaction: {
+        type: String
+    }
+
+})
+const uinvoice = mongoose.model("uinvoice", uinvoiceSchema);
+//End User Invoice Schema
+// Start Booking Schema
+const BookingSchema = Schema({
+    user: {
+        type: Schema.ObjectId,
+        ref: "user"
+    },
+    Date: {
+        type: Date,
+        required: true,
+    },
+    requestid: {
+        type: Schema.ObjectId,
+        ref: "Request",
+        required: true
+    },
+    status: {
+        type: String,
+        enum: ['booking', 'cancle'],
+        default: 'booking'
+    }
+
+})
+const booking = mongoose.model("booking", BookingSchema);
+// ENd
 module.exports = {
     hotel: hotel,
     user: user,
@@ -265,5 +330,7 @@ module.exports = {
     Request: Request,
     Department: Department,
     Attendence: Attendence,
-    Employee: Employee
+    Employee: Employee,
+    uinvoice: uinvoice,
+    booking: booking
 }
