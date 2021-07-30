@@ -265,7 +265,8 @@ https://domin.com/api/adduser?name=${value}&email=${value}&phone=${value}&passwo
 <li>to</li>
 <li>hotel</li> // HOTEL NAME IN HOTEL COLLECTION
 <li>user</li> //USER EMAIL IN USER COLLECTION
-//--------------optimal fields update win get offer or accept request------------//
+<br>
+//----optimal fields update win get offer or accept request-------//
 <li>totalsalary</li>
 <li>room</li>
 <li>inoffer</li>
