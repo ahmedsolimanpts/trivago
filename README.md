@@ -9,6 +9,7 @@ Platform To Search For Free Room in Hotels And Booking Room
 <ol>
 <li>Get All User</li>
 <p>METHOD --> GET</p> 
+
 <p>https://domina.com/api/getalluser</p>
 
 
@@ -24,6 +25,7 @@ Platform To Search For Free Room in Hotels And Booking Room
 <li>password</li>
 <li>password2</li>
 </ul>
+
 <p>
 https://domina.com/api/adduser?name=${value}&email=${value}&phone=${value}&password=${value}&password2=${value}</p>
 </ol>
