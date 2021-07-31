@@ -1,6 +1,7 @@
 const DB = require("../Collection/DB");
 const moment = require("moment")
-const momenttime = require("moment-timezone")
+const momenttime = require("moment-timezone");
+const { booking } = require("../Collection/DB");
 // function to Get All Reqord Booking
 const GetallBooking = async (req, res) => {
     try {
@@ -51,7 +52,7 @@ const Addbooking = async (req, res) => {
     else if (!roomid) {
         res.json({ message: "Enter Room ID" })
     } else {
-        const Rid = await DB.Request.findById({ _id: request }).exec();
+        const Rid = await DB.Request.findById({ _id: request }).populate('user').exec();
         const Roomid = await DB.room.findOne({ roomid: roomid }, { _id: 1 }).exec()
 
         if (!Rid) {
@@ -65,36 +66,39 @@ const Addbooking = async (req, res) => {
             let to = Rid.to;
             let userid = Rid.user._id;
             let Requestid = Rid._id;
-            let stop = moment.tz(to, 'Africa/Cairo')
+            let stop = moment(to)
             let Datearray = [];
-            let current = moment.tz(from, 'Africa/Cairo');
-            let st = moment.tz(to, 'Africa/Cairo')
+            let current = moment(from);
+            let st = moment(to)
             let Dr = [];
-            let cr = moment.tz(from, 'Africa/Cairo');
+            let cr = moment(from);
             // start chech for ROOM ID AND DATE IS NOT BOOKING BEFORE
             while (cr <= st) {
-                let date = moment(cr, 'Africa/Cairo');
+                let date = moment(cr);
                 await DB.booking.findOne({ Date: date }).populate({ path: 'Request', match: { room: Roomid } })
                     .then(doc => {
-                        if (doc) { Dr.push(moment.tz(date, 'Africa/Cairo')); }
+                        if (doc) { Dr.push(moment(date,)); }
                     })
-                cr = moment.tz(cr, 'Africa/Cairo').add(1, 'days')
+                cr = moment(cr).add(1, 'days')
             }
             // END CHECK
             if (Dr.length > 0) { //IF ROOM IS BOOKING RETUEN THE DATE THAT IS BOOKING
-                res.json({ message: "this room is Booking in This Days" })
+
+                res.json({ message: "this room is Booking in This Days", Dr });
+
             } else {
                 // ROOM IS NOT BOOKING
                 while (current <= stop) {
-                    Datearray.push(moment.tz(current, 'Africa/Cairo'));
-                    let date = moment.tz(current, 'Africa/Cairo');
+                    Datearray.push(moment(current));
+                    let date = moment(current);
                     let newbooking = new DB.booking({ user: userid, Date: date, requestid: Requestid });
                     newbooking.save().catch(e => console.log(e))
                     current = moment.tz(current, 'Africa/Cairo').add(1, 'days')
                 }
-                await DB.Request.findOneAndUpdate({ _id: Requestid }, { room: Roomid, status: 'booking' }).populate('room').then(doc => {
+                Datearray.length = 0;
+                await DB.Request.findOneAndUpdate({ _id: Requestid }, { room: Roomid, status: 'booking' }).then(doc => {
                     if (doc) {
-                        res.json({ doc, message: "DONE" })
+                        res.json({ message: "DONE" })
                     } else {
                         res.json({ message: "Can't" })
                     }
@@ -106,8 +110,31 @@ const Addbooking = async (req, res) => {
 
 
 }
+const GetAllbookingbyrequestid = async (req, res) => {
+    const { id } = req.query;
+    if (!id) {
+        res.json({ message: "please Enter Valid Request ID" })
+    } else {
+        try {
+            await DB.booking.find({ requestid: id }).populate("Request").then(docs => {
+                if (docs.length > 0) {
+                    for (i in docs) {
+                        console.log(moment(docs[i].Date))
+                    }
+
+                    res.json({ docs })
+                } else {
+                    res.json({ message: "Please Enter Valid Request ID " })
+                }
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+}
 module.exports = {
     GetallBooking: GetallBooking,
     GethotelBooking: GethotelBooking,
-    Addbooking: Addbooking
+    Addbooking: Addbooking,
+    GetAllbookingbyrequestid: GetAllbookingbyrequestid
 }

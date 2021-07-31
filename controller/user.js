@@ -46,15 +46,28 @@ const AddUser = async (req, res) => {
 
     }
 }
-const updateuser = async (req, res) => {
-    try {
-
-    } catch (err) {
-        console.log(err)
+const GetuserBYID = async (req, res) => {
+    const { id } = req.query;
+    if (!id) {
+        req.json({ message: "Please Enter User ID" })
     }
+    else {
+        try {
+            await DB.user.findById(id).then(doc => {
+                if (doc) {
+                    res.json(doc)
+                } else {
+                    res.json({ message: "NO User" })
+                }
+            }).catch(e => console.loge)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 }
 module.exports = {
     GetAlluser: GetAlluser,
     AddUser: AddUser,
-    updateuser: updateuser
+    GetuserBYID: GetuserBYID
 }

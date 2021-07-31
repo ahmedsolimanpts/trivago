@@ -9,8 +9,11 @@ const contactcontroller = require("../controller/contactus");
 const Requestcontoller = require("../controller/request");
 const BookingController = require("../controller/booking");
 const checkavability = require("../controller/checkavability");
+const passport = require("passport");
+require("../controller/passport")
 // ----------------- User Router --------------- //
 router.get("/getalluser", userController.GetAlluser); //GET ALL USER
+router.get("/getuserbyid", userController.GetuserBYID) //GET USER BY ID
 router.get("/adduser", userController.AddUser);  //ADD NEW USER
 // ----------------- User Router --------------- //
 // ----------------- Hotel Router --------------- //
@@ -57,11 +60,27 @@ router.delete("/deletehotelrequest", Requestcontoller.DeleteHotelRequests) //del
 // ----------------- Booking Router --------------- //
 router.get("/getallbooking", BookingController.GetallBooking) //get All Booking IN DB
 router.get("/gethotelbooking", BookingController.GethotelBooking) //get All Booking For One Hotel
-
-
+router.get("/getbookingbyid", BookingController.GetAllbookingbyrequestid);
 router.get("/acceptbooking", BookingController.Addbooking)
 // ----------------- Booking Router --------------- //
 // ----------------- Avilabilty Router --------------- //
 router.get("/chekonehotel", checkavability.checkinonehotel);
 // ----------------- Avilabilty Router --------------- //
+
+router.get('/login', function (req, res, next) {
+    let { email, password } = req.query;
+    if (!email || !password) {
+        res.json({ message: "PLease Enter All FIlds" })
+    } else {
+        passport.authenticate('local', function (err, user, info) {
+            if (err) { return next(err); }
+            if (!user) { return res.json({ info }); }
+            req.logIn(user, function (err) {
+                if (err) { return next(err); }
+                return res.status(200).json({ user, message: "SUCESS LOGIN" });
+            });
+        })(req, res, next);
+    }
+
+});
 module.exports = router;

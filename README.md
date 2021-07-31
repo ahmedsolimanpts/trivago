@@ -13,7 +13,17 @@ Platform To Search For Free Room in Hotels And Booking Room
 
 <p>https://domin.com/api/getalluser</p>
 
+<ol>
+<li>Get User By ID</li>
+<p>METHOD --> GET</p>
 
+#### Requierments Fields
+<ul>
+<li>id</li>
+</ul>
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/getuserbyid?id=${value}</p>
 
 <li>Add User</li> 
 <p>METHOD --> GET</p> 
@@ -266,7 +276,7 @@ https://domin.com/api/adduser?name=${value}&email=${value}&phone=${value}&passwo
 <li>hotel</li> // HOTEL NAME IN HOTEL COLLECTION
 <li>user</li> //USER EMAIL IN USER COLLECTION
 <br>
-//----optimal fields update win get offer or accept request-------//
+//----optimal fields update when get offer or accept request-------//
 <li>totalsalary</li>
 <li>room</li>
 <li>inoffer</li>
@@ -383,4 +393,47 @@ https://domin.com/api/adduser?name=${value}&email=${value}&phone=${value}&passwo
 <h4>URL SHOUD LIKE:</h4>
 
 <p>https://domin.com/api/gethotelbooking?hotel=${value}</p>
+</ol>
+
+<ol>
+<li>GET ALL BOOKING BY Request ID </li>
+<p>METHOD --> GET</p> 
+
+### Requierments Fields
+<ul>
+<li>id</li> // REQUEST ID IN Request COLLECTION
+</ul> 
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/getbookingbyid?id=${value}</p>
+</ol>
+
+
+<ol>
+<li>Accept Request BOOKING BY Request ID</li>
+<p>METHOD --> GET</p> 
+
+### Requierments Fields
+<ul>
+<li>roomid</li> //roomid IN Room Collection NOT _id
+<li>request</li> // REQUEST ID IN Request COLLECTION
+</ul> 
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/acceptbooking?request=${value}&roomid=${value}</p>
+</ol>
+
+# LOGIN USING PASSPORT
+<ol>
+<li>LOG IN</li>
+<p>METHOD --> GET</p> 
+
+### Requierments Fields
+<ul>
+<li>email</li> 
+<li>password</li>
+</ul> 
+<h4>URL SHOUD LIKE:</h4>
+
+<p>https://domin.com/api/login?email=${value}&password=${value}</p>
 </ol>
