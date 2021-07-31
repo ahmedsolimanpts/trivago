@@ -11,6 +11,9 @@ const BookingController = require("../controller/booking");
 const checkavability = require("../controller/checkavability");
 const passport = require("passport");
 require("../controller/passport")
+router.get("/", (req, res) => {
+    res.json({ message: "Hello In Trivago" })
+})
 // ----------------- User Router --------------- //
 router.get("/getalluser", userController.GetAlluser); //GET ALL USER
 router.get("/getuserbyid", userController.GetuserBYID) //GET USER BY ID
