@@ -10,6 +10,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(passport.initialize());
 app.use(passport.session());
+app.get("/", (req, res) => {
+    res.json({ message: "Hello In Trivago" })
+})
 app.use("/api", require("./router/router"))
 app.use((req, res) => {
     res.json({ message: "There Is Erorr No URL" })
