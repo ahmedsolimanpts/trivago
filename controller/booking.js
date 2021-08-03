@@ -5,7 +5,7 @@ const { booking } = require("../Collection/DB");
 // function to Get All Reqord Booking
 const GetallBooking = async (req, res) => {
     try {
-        await DB.booking.find().populate('Request').exec((e, docs) => {
+        await DB.booking.find().populate('Request').populate('user').exec((e, docs) => {
             if (e) throw console.log(e)
             if (docs.length > 0) {
                 res.status(200).json({ message: "sucess", docs })
@@ -64,22 +64,24 @@ const Addbooking = async (req, res) => {
         else {
             let from = Rid.from;
             let to = Rid.to;
+            from = moment(from, "MM-DD-YYYY");
+            to = moment(to, "MM-DD-YYYY");
             let userid = Rid.user._id;
             let Requestid = Rid._id;
-            let stop = moment(to)
+            let stop = to
             let Datearray = [];
-            let current = moment(from);
-            let st = moment(to)
+            let current = from;
+            let st = to
             let Dr = [];
-            let cr = moment(from);
+            let cr = from;
             // start chech for ROOM ID AND DATE IS NOT BOOKING BEFORE
             while (cr <= st) {
-                let date = moment(cr);
-                await DB.booking.findOne({ Date: date }).populate({ path: 'Request', match: { room: Roomid } })
+                let date = moment(cr, "MM-DD-YYYY");
+                await DB.booking.findOne({ $and: [{ roomid: Roomid }, { Date: date }] }).populate({ path: 'Request', match: { room: Roomid } })
                     .then(doc => {
-                        if (doc) { Dr.push(moment(date,)); }
-                    })
-                cr = moment(cr).add(1, 'days')
+                        if (doc) { Dr.push(moment(date, "MM-DD-YYYY")); }
+                    });
+                cr = moment(cr, "MM-DD-YYYY").add(1, 'days')
             }
             // END CHECK
             if (Dr.length > 0) { //IF ROOM IS BOOKING RETUEN THE DATE THAT IS BOOKING
@@ -89,11 +91,11 @@ const Addbooking = async (req, res) => {
             } else {
                 // ROOM IS NOT BOOKING
                 while (current <= stop) {
-                    Datearray.push(moment(current));
-                    let date = moment(current);
+                    Datearray.push(moment(current, "MM-DD-YYYY"));
+                    let date = moment(current, "MM-DD-YYYY");
                     let newbooking = new DB.booking({ user: userid, Date: date, requestid: Requestid });
                     newbooking.save().catch(e => console.log(e))
-                    current = moment.tz(current, 'Africa/Cairo').add(1, 'days')
+                    current = moment(current, "MM-DD-YYYY").add(1, 'days')
                 }
                 Datearray.length = 0;
                 await DB.Request.findOneAndUpdate({ _id: Requestid }, { room: Roomid, status: 'booking' }).then(doc => {
@@ -116,7 +118,7 @@ const GetAllbookingbyrequestid = async (req, res) => {
         res.json({ message: "please Enter Valid Request ID" })
     } else {
         try {
-            await DB.booking.find({ requestid: id }).populate("Request").then(docs => {
+            await DB.booking.find({ requestid: id }).populate("Request").populate('user').then(docs => {
                 if (docs.length > 0) {
                     for (i in docs) {
                         console.log(moment(docs[i].Date))

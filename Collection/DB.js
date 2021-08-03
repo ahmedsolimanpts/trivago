@@ -27,7 +27,6 @@ const HotelSchema = Schema({
         required: true
     }
 });
-const hotel = mongoose.model("hotel", HotelSchema)
 //End Hotel Schema
 // Start User Schema
 const UserSchema = Schema({
@@ -75,7 +74,6 @@ UserSchema.pre("save", async function (next) {
     }
 
 })
-const user = mongoose.model("user", UserSchema);
 
 // End User Schema
 // Start Admin Schema
@@ -88,7 +86,6 @@ const AdminSchema = Schema({
         ref: "hotel"
     }
 })
-const admin = mongoose.model("admin", AdminSchema)
 //End Admin Schema
 // Start Department Schema
 const DepartmentSchema = Schema({
@@ -100,7 +97,6 @@ const DepartmentSchema = Schema({
         ref: "hotel"
     }
 })
-const Department = mongoose.model("Department", DepartmentSchema)
 //End Department Schema
 // Start Contact Us Schema
 const ContactusSchema = Schema({
@@ -117,7 +113,6 @@ const ContactusSchema = Schema({
         ref: "hotel"
     }
 })
-const contactus = mongoose.model("contactus", ContactusSchema)
 //End Department Schema
 // Start Room Us Schema
 const RoomSchema = Schema({
@@ -138,7 +133,6 @@ const RoomSchema = Schema({
         required: true
     }
 })
-const room = mongoose.model("room", RoomSchema)
 //End Room Schema
 // Start offer Us Schema
 const OffersSchema = Schema({
@@ -163,7 +157,6 @@ const OffersSchema = Schema({
         type: String
     }
 })
-const offer = mongoose.model("offer", OffersSchema)
 //End offer Schema
 // Start Request Us Schema
 const RequestSchema = Schema({
@@ -211,7 +204,6 @@ const RequestSchema = Schema({
 
     }
 })
-const Request = mongoose.model("Request", RequestSchema)
 //End Request Schema
 // Start Employee  Schema
 const EmployeeSchema = Schema({
@@ -242,7 +234,6 @@ const EmployeeSchema = Schema({
         required: true
     }
 })
-const Employee = mongoose.model("Employee", EmployeeSchema);
 //End Employee Schema
 // Start Attendence  Schema
 const AttendenceSchema = Schema({
@@ -266,7 +257,6 @@ const AttendenceSchema = Schema({
         required: true
     },
 })
-const Attendence = mongoose.model("Attendence", AttendenceSchema);
 //End Attendence Schema
 // Start User Invoice   Schema
 const uinvoiceSchema = Schema({
@@ -294,7 +284,7 @@ const uinvoiceSchema = Schema({
     }
 
 })
-const uinvoice = mongoose.model("uinvoice", uinvoiceSchema);
+
 //End User Invoice Schema
 // Start Booking Schema
 const BookingSchema = Schema({
@@ -310,6 +300,7 @@ const BookingSchema = Schema({
         type: Schema.ObjectId,
         ref: "Request",
         required: true
+
     },
     status: {
         type: String,
@@ -318,8 +309,22 @@ const BookingSchema = Schema({
     }
 
 })
-const booking = mongoose.model("booking", BookingSchema);
 // ENd
+const admin = mongoose.model("admin", AdminSchema)
+const hotel = mongoose.model("hotel", HotelSchema)
+
+const Employee = mongoose.model("Employee", EmployeeSchema);
+const Department = mongoose.model("Department", DepartmentSchema)
+const contactus = mongoose.model("contactus", ContactusSchema)
+const offer = mongoose.model("offer", OffersSchema)
+const user = mongoose.model("user", UserSchema);
+
+const uinvoice = mongoose.model("uinvoice", uinvoiceSchema);
+const booking = mongoose.model("booking", BookingSchema);
+const Attendence = mongoose.model("Attendence", AttendenceSchema);
+const Request = mongoose.model("Request", RequestSchema)
+const room = mongoose.model("room", RoomSchema)
+
 module.exports = {
     hotel: hotel,
     user: user,

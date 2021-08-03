@@ -28,7 +28,7 @@ const addemployee = async (req, res) => {
         }
     }
 
-}
+};
 
 const getemployeesinhotel = async (req, res) => {
     const { hotel } = req.body;
@@ -56,9 +56,96 @@ const getemployeesinhotel = async (req, res) => {
     } catch (e) {
         console.log(e)
     }
-}
+};
+const attendEmployee = async (req, res) => {
+    const { user, hotel } = req.body;
+    if (!user) {
+        res.json({ message: "Please Enter User" })
+    } else if (!hotel) {
+        res.json({ message: "please Enter Hotel" })
+    } else {
+        const userid = await DB.user.findOne({ email: user }).exec();
+        const hotelid = await DB.hotel.findOne({ name: hotel }).exec();
+        try {
+            if (!userid) {
+                res.json({ message: "Please Enter Valid User Email No User With This Data" })
+            } else if (!hotelid) {
+                res.json({ message: "Please Enter Valid Hotel Name No Hotel With This Data" })
+            } else {
+                const newacction = new DB.Attendence({ user: userid, hotel: hotelid, acction: 'Attend' });
+                newacction.save().then(doc => {
+                    if (doc) {
+                        res.status(200).json({ message: "Sucess", doc })
+                    } else {
+                        res.json({ message: "Can't Save" })
+                    }
+                })
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+};
+
+const leaveemployee = async (req, res) => {
+    const { user, hotel } = req.body;
+    if (!user) {
+        res.json({ message: "Please Enter User Email" })
+    } else if (!hotel) {
+        res.json({ message: "please Enter Hotel Name" })
+    } else {
+        const userid = await DB.user.findOne({ email: user }).exec();
+        const hotelid = await DB.hotel.findOne({ name: hotel }).exec();
+        try {
+            if (!userid) {
+                res.json({ message: "Please Enter Valid User Email No User With This Data" })
+            } else if (!hotelid) {
+                res.json({ message: "Please Enter Valid Hotel Name No Hotel With This Data" })
+            } else {
+                const newacction = new DB.Attendence({ user: userid, hotel: hotelid, acction: 'leave' });
+                newacction.save().then(doc => {
+                    if (doc) {
+                        res.status(200).json({ message: "Sucess", doc })
+                    } else {
+                        res.json({ message: "Can't Save" })
+                    }
+                })
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+};
+
+const GetAllTransactiontooneuser = async (req, res) => {
+    const { user } = req.query;
+    if (!user) {
+        res.json({ message: "Please Enter User Email" })
+    } else {
+        try {
+            const userid = await DB.user.findOne({ email: user }).exec();
+            if (userid) {
+                await DB.Attendence.find({ user: userid }).populate('user').populate('hotel').then(docs => {
+                    if (docs) {
+                        res.status(200).json({ message: "Sucess", docs })
+                    } else {
+                        res.json({ message: "NO log Added Yet" })
+                    }
+                }).catch(e => console.log(e))
+            } else {
+                res.json({ message: "Please Enter Valid User Email No User With This email" })
+            }
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+};
 
 module.exports = {
     addemployee: addemployee,
-    getemployeesinhotel: getemployeesinhotel
+    getemployeesinhotel: getemployeesinhotel,
+    attendEmployee: attendEmployee,
+    leaveemployee: leaveemployee,
+    GetAllTransactiontooneuser: GetAllTransactiontooneuser
 }

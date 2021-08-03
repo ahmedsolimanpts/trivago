@@ -11,7 +11,7 @@ const Addroom = async (req, res) => {
         else {
             const isroomhere = await DB.room.findOne({ $and: [{ roomid: roomid }, { floor: floor }] }).exec();
             if (!isroomhere) {
-                const newroom = new DB.room({ roomid, floor, hotelid, description, salary });
+                const newroom = new DB.room({ roomid, floor, hotel: hotelid, description, salary });
                 await newroom.save().then((doc) => {
                     if (doc) {
                         res.json(doc)

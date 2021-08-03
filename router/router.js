@@ -9,8 +9,8 @@ const contactcontroller = require("../controller/contactus");
 const Requestcontoller = require("../controller/request");
 const BookingController = require("../controller/booking");
 const checkavability = require("../controller/checkavability");
-const passport = require("passport");
-require("../controller/passport")
+const authinticate = require("../controller/authinticate")
+
 
 // ----------------- User Router --------------- //
 router.get("/getalluser", userController.GetAlluser); //GET ALL USER
@@ -67,21 +67,15 @@ router.get("/acceptbooking", BookingController.Addbooking)
 // ----------------- Avilabilty Router --------------- //
 router.get("/chekonehotel", checkavability.checkinonehotel);
 // ----------------- Avilabilty Router --------------- //
+// ----------------- LOGIN Router --------------- //
 
-router.get('/login', function (req, res, next) {
-    let { email, password } = req.query;
-    if (!email || !password) {
-        res.json({ message: "PLease Enter All FIlds" })
-    } else {
-        passport.authenticate('local', function (err, user, info) {
-            if (err) { return next(err); }
-            if (!user) { return res.json({ info }); }
-            req.logIn(user, function (err) {
-                if (err) { return next(err); }
-                return res.status(200).json({ user, message: "SUCESS LOGIN" });
-            });
-        })(req, res, next);
-    }
+router.get('/login', authinticate.loginuser); // LOG IN TO THE SYSTEM
+// ----------------- LOGIN Router --------------- //
+// ----------------- ATTENDENCE Router --------------- //
 
-});
+router.post('/attendence/login', empcontroller.attendEmployee);  // STORE USER ATTEND TO WORK TIME
+router.post('/attendence/leave', empcontroller.leaveemployee);   // STORE USER LEAVE TO WORK TIME
+router.get('/getoneuserattendlog', empcontroller.GetAllTransactiontooneuser); //GET ALL TRANSACTION FOR ONE USER
+// ----------------- ATTENDENCE Router --------------- //
+
 module.exports = router;

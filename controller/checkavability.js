@@ -2,7 +2,7 @@ const DB = require("../Collection/DB.js");
 const moment = require("moment")
 const checkinonehotel = async (req, res) => {
 
-    const { from, to, hotelid } = req.query;
+    let { from, to, hotelid } = req.query;
 
     if (!from) {
         res.json({ message: "Please Enter Check IN From" })
@@ -13,29 +13,44 @@ const checkinonehotel = async (req, res) => {
     }
     else {
         try {
-            const hid = await DB.hotel.findOne({ _id: hotelid }).exec();
-            var current = moment(from);
-            var stop = moment(to);
-            console.log(moment.tz(from, 'Africa/Cairo'))
-            console.log(moment.tz(to, 'Africa/Cairo'))
 
-            let dr = []
-            while (current <= stop) {
-                dr.push(current);
-                current = moment(current).add(1, 'days')
-            }
-            if (hid) {
-                await DB.booking.find().populate({ path: "Request", match: { hotel: hid } }).exec((e, docs) => {
-                    if (e) throw console.log(e)
-                    if (docs.length > 0) {
-                        res.json({ dr, docs })
-                    } else {
-                        res.json({ message: "no Booking" })
-                    }
-                })
+            from = moment(from, "MM-DD-YYYY");
+            to = moment(to, "MM-DD-YYYY")
+
+
+            const hid = await DB.hotel.findOne({ _id: hotelid }, { _id: 1, __v: 0 }).exec();
+            if (!hid) {
+                res.json({ message: "Please Enter Valid Hotl ID" })
             } else {
-                res.json({ message: "Please Enter Valid Hotel ID" })
+                if (moment(from).isSame(to)) {
+                    res.json({ message: "Please Eneter Two Differnt  Dates" })
+                } else {
+                    from = new Date(from).toString();
+                    to = new Date(to).toString();
+                    await DB.Request.find({
+                        $and: [
+                            {
+                                $or:
+                                    [
+                                        { from: { $gte: from, $lte: to } },
+                                        { to: { $gte: from, $lte: to } }
+                                    ]
+                            },
+                            { status: 'booking' },
+                            { hotel: hid }
+                        ]
+                    }).populate({ path: 'hotel', }).populate('room').then(doc => {
+                        if (doc.length > 0) {
+                            res.json(doc);
+
+                        } else {
+                            res.json({ message: "NO Requests Booking" });
+                        }
+                    }).catch(e => console.log(e));
+                }
+
             }
+
         } catch (e) {
             console.log(e)
         }
